@@ -1,14 +1,20 @@
+import model.Example;
+import model.Flask;
+import model.Util;
+
 import java.util.Random;
 
 public class App {
 
     public static void main(String[] args) {
 
+//*
         Random rnd = new Random();
         Flask flask = new Flask();
         for (int i=0; i<8; i++) {
             flask.addItem(new Example(rnd.nextInt(4096)));
         }
+
         flask.print();
 
         flask.printPercents();
@@ -22,7 +28,7 @@ public class App {
 
 
         Util.printItems(flask.crossParentPool(flask.getParentPool(4)));
-
+//*/
     }
 
 }

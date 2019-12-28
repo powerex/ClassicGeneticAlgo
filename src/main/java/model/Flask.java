@@ -1,4 +1,4 @@
-import com.sun.javafx.collections.ElementObservableListDecorator;
+package model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -16,6 +16,7 @@ public class Flask<T extends Item> {
         percents = new LinkedList<Double>();
         distribution = new LinkedList<Double>();
         age = 0;
+        Example.clearPopulation();
     }
 
     public void recalcPercents() {
@@ -50,6 +51,11 @@ public class Flask<T extends Item> {
 
     public void addItem(T it) {
         items.add(it);
+        recalcPercents();
+    }
+
+    public T getItem(int index) {
+        return items.get(index);
     }
 
     public void print() {
@@ -73,7 +79,7 @@ public class Flask<T extends Item> {
     }
 
     public List<T> crossParentPool(List<T> parents) {
-//        int k = Example.SIZE / 2;
+//        int k = model.Example.SIZE / 2;
         Random rnd = new Random();
         List<T> children = new LinkedList<T>();
 
@@ -98,6 +104,10 @@ public class Flask<T extends Item> {
             children.add((T) new Example(child2));
         }
         return children;
+    }
+
+    public double getPercents(int index) {
+        return percents.get(index);
     }
 
 }

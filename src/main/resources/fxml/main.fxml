@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="784.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="visual.Controller">
+   <children>
+      <PieChart fx:id="pieChart" prefHeight="400.0" prefWidth="673.0" title="Percents" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <Button fx:id="calcButton" layoutX="524.0" layoutY="14.0" minWidth="80.0" mnemonicParsing="false" onAction="#calcClick" text="Calc" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+      <TableView fx:id="startPool" layoutX="10.0" layoutY="442.0" prefHeight="226.0" prefWidth="213.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="442.0">
+        <columns>
+          <TableColumn fx:id="columnName" prefWidth="43.0" text="CH" />
+          <TableColumn fx:id="columnSequence" prefWidth="127.0" text="genom" />
+          <TableColumn fx:id="columnFitness" prefWidth="40.0" text="Fit" />
+        </columns>
+      </TableView>
+      <Label layoutX="10.0" layoutY="426.0" text="Start pool" AnchorPane.leftAnchor="10.0" />
+      <TableView fx:id="nextPool" layoutX="308.0" layoutY="442.0" prefHeight="226.0" prefWidth="213.0">
+         <columns>
+            <TableColumn fx:id="columnName1" prefWidth="50.0" text="CH" />
+            <TableColumn fx:id="columnSequence1" prefWidth="120.0" text="genom" />
+            <TableColumn fx:id="columnFitness1" prefWidth="40.0" text="Fit" />
+         </columns>
+      </TableView>
+      <Label layoutX="308.0" layoutY="426.0" text="Next pool" />
+   </children>
+</AnchorPane>

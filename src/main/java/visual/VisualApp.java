@@ -11,7 +11,7 @@ public class VisualApp extends Application {
         String fxmlFile = "../fxml/main.fxml";
 
         FXMLLoader loader = new FXMLLoader();
-        Parent root = (Parent) loader.load(getClass().getResource(fxmlFile));
+        Parent root = loader.load(getClass().getResource(fxmlFile));
         root.getStylesheets().add(getClass().getResource("../style/table.css").toExternalForm());
         primaryStage.setTitle("Genetic algorithm");
         Scene scene = new Scene(root);

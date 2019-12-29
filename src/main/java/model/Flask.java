@@ -7,6 +7,10 @@ import java.util.Random;
 public class Flask<T extends Item> {
 
     private List<T> items;
+    private List<T> parents = null;
+    private List<T> nextGeneration = null;
+    private final double MUTATION = 0.2;
+
     private List<Double> percents;
     private List<Double> distribution;
     private int age;
@@ -19,7 +23,15 @@ public class Flask<T extends Item> {
         Example.clearPopulation();
     }
 
-    public void recalcPercents() {
+    public List<T> getNextGeneration() {
+        return nextGeneration;
+    }
+
+    public List<T> getParents() {
+        return parents;
+    }
+
+    void recalcPercents() {
         double sum = 0;
         for (Item i: items) {
             sum += i.getFitness();
@@ -33,6 +45,14 @@ public class Flask<T extends Item> {
         for (int i=1; i<items.size(); ++i) {
             distribution.add(distribution.get(i-1) + percents.get(i));
         }
+    }
+
+    public double getAverageFitness() {
+        double sum = 0.0;
+        for (T t: items) {
+            sum += t.getFitness();
+        }
+        return sum / items.size();
     }
 
     public void printPercents() {
@@ -65,7 +85,7 @@ public class Flask<T extends Item> {
         }
     }
 
-    public List<T> getParentPool(int size) {
+    private List<T> getParentPool(int size) {
         List<T> parents = new LinkedList<T>();
         Random rnd = new Random();
         for (int i=0; i<size*2; i++) {
@@ -78,10 +98,11 @@ public class Flask<T extends Item> {
         return parents;
     }
 
-    public List<T> crossParentPool(List<T> parents) {
+    private List<T> crossParentPool() {
 //        int k = model.Example.SIZE / 2;
+        getParentPool(4);
         Random rnd = new Random();
-        List<T> children = new LinkedList<T>();
+        List<T> nextGeneration = new LinkedList<T>();
 
         for (int n=0; n<parents.size()/2; n++) {
 
@@ -100,10 +121,31 @@ public class Flask<T extends Item> {
                 }
             }
 
-            children.add((T) new Example(child1));
-            children.add((T) new Example(child2));
+            if (rnd.nextDouble() < MUTATION) {
+                child1[rnd.nextInt(Example.SIZE)] ^= true;
+            }
+
+            nextGeneration.add((T) new Example(child1));
+            nextGeneration.add((T) new Example(child2));
         }
-        return children;
+        return nextGeneration;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void nextGeneration() {
+        age++;
+        if (nextGeneration != null)
+            items = nextGeneration;
+        parents = getParentPool(4);
+        nextGeneration = crossParentPool();
+        recalcPercents();
+    }
+
+    public List<T> getItems() {
+        return items;
     }
 
     public double getPercents(int index) {

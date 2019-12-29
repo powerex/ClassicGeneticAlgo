@@ -10,7 +10,7 @@ public class App {
 
 //*
         Random rnd = new Random();
-        Flask flask = new Flask();
+        Flask<model.Item> flask = new Flask<model.Item>();
         for (int i=0; i<8; i++) {
             flask.addItem(new Example(rnd.nextInt(4096)));
         }
@@ -22,12 +22,12 @@ public class App {
         flask.printDistribution();
 
         System.out.println("\n\n");
-        Util.printItems(flask.getParentPool(4));
+//        Util.printItems(flask.getParentPool(4));
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~``");
 
 
-        Util.printItems(flask.crossParentPool(flask.getParentPool(4)));
+//        Util.printItems(flask.crossParentPool(flask.getParentPool(4)));
 //*/
     }
 

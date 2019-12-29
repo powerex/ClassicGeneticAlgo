@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Example implements Item {
 
-    public static final int SIZE = 12;
+    static final int SIZE = 12;
     private static int id = 1;
     private long number;
     private String name;
     private String stringSquence;
     private Boolean[] sequence = new Boolean[SIZE];
 
-    public static void clearPopulation() {
+    static void clearPopulation() {
         id = 1;
     }
 
@@ -38,7 +38,7 @@ public class Example implements Item {
         stringSquence = getSequenceString();
     }
 
-    public Example(Boolean[] sequence) {
+    Example(Boolean[] sequence) {
         this.name = "ch" + id++;
         this.sequence = sequence;
         number = 0;
@@ -53,7 +53,7 @@ public class Example implements Item {
         return sequence;
     }
 
-    public long getNumber() {
+    long getNumber() {
         return number;
     }
 
@@ -65,21 +65,20 @@ public class Example implements Item {
                 f++;
             n /= 2;
         }
-        return f;
+        return f*f*f;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getSequenceString() {
+    String getSequenceString() {
         StringBuilder sb = new StringBuilder();
-        for (Boolean b: sequence) {
+        for (Boolean b: sequence)
             if (b)
                 sb.append('1');
             else
                 sb.append('0');
-        }
         return sb.toString();
     }
 

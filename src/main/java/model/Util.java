@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Util {
 
-    public static void printSequence(Boolean[] seq) {
+    static void printSequence(Boolean[] seq) {
         for (Boolean b: seq) {
             if (b)
                 System.out.print("1");
